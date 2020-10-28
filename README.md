@@ -83,9 +83,9 @@ Yelp 2015: https://github.com/hexiangnan/sigir16-eals/tree/master/data
 ---
 
 ## Usage
-Change the experimental settings in `main_config.cfg` and the model hyperparameters in `model_config`. </br>
-You can run `main.py` to train and test models. </br>
-Command line arguments are also acceptable with the same naming in configuration files. (Both main/model config)
+- Change the experimental settings in `main_config.cfg` and the model hyperparameters in `model_config`. </br>
+- You can run `main.py` to train and test models. </br>
+- Command line arguments are also acceptable with the same naming in configuration files. (Both main/model config)
 
 For example: ```python main.py --model_name MultVAE --lr 0.001```
 
