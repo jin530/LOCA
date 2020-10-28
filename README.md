@@ -60,8 +60,7 @@ This is the code for the WSDM 2021 paper: `Local Collaborative Filtering`.
 </tbody>
 </table>
 <br>
-<br>
-We use five public benchmark datasets: MovieLens 10M (ML10M), MovieLens 20M (ML20M), Amazon Digital Music (AMusic), Amazon Video Games (AGames), and Yelp 2015 (Yelp) datasets. For the MovieLens datasets, we did not modify the original data except for binarization. For the Amazon datasets, We removed users with ratings less than
+We use five public benchmark datasets: MovieLens 10M (ML10M), MovieLens 20M (ML20M), Amazon Digital Music (AMusic), Amazon Video Games (AGames), and Yelp 2015 (Yelp) datasets. We convert all explicit ratings to binary values, whether the ratings are observed or missing. For the MovieLens datasets, we did not modify the original data except for binarization. For the Amazon datasets, We removed users with ratings less than
 10, resulting in 97,439 (Music) and 236,415 (Games) ratings. For the Yelp dataset, we pre-processed Yelp 2015 challenge dataset as in <A href='https://github.com/hexiangnan/sigir16-eals'> Fast Matrix Factorization for Online Recommendation with Implicit Feedback </A>, where users and items with less than 10 interactions are
 removed.
 <br>
@@ -84,9 +83,8 @@ Yelp 2015: https://github.com/hexiangnan/sigir16-eals/tree/master/data
 ---
 
 ## Usage
-You can run `main.py` to train and test the models. 
-You can change the experimental settings in `main_config.cfg`, and the model settings in `./model_config/XXX.cfg`.
-Or you can change the settings on the command line.
+You can run `main.py` to train and test the models and change the experimental settings in `main_config.cfg`, and the model parameters in `model_config` .
+you can also change the options on the command line.
 
 For example: `python main.py --model_name MultVAE --lr 0.001`
 
