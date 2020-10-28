@@ -66,11 +66,11 @@ removed.
 <br>
 <br>
 
-You can get preprocessed datasets in here.
+You can get preprocessed datasets from the link below.
 <!-- Preprocessed Datasets -->
 https://drive.google.com/drive/folders/1DqchJ1RR2TZRNoVeU3MXcXLcMJG0fia_?usp=sharing
 
-You can get the original datasets in following links:
+You can get the original datasets from the following links:
 <!-- Movielens -->
 Movielens: https://grouplens.org/datasets/movielens/
 
@@ -83,17 +83,18 @@ Yelp 2015: https://github.com/hexiangnan/sigir16-eals/tree/master/data
 ---
 
 ## Usage
-You can run `main.py` to train and test the models and change the experimental settings in `main_config.cfg`, and the model parameters in `model_config` .
-you can also change the options on the command line.
+Change the experimental settings in `main_config.cfg` and the model hyperparameters in `model_config`. </br>
+You can run `main.py` to train and test models.
+Command line arguments are also acceptable with the same naming in configuration files. (Both main/model config)
 
-For example: `python main.py --model_name MultVAE --lr 0.001`
+For example: ```python main.py --model_name MultVAE --lr 0.001```
 
-Before running the LOCA, you need (1) user embeddings to find local communities and (2) a global model to cover users who are not considered by local models. 
-1. Run single MultVAE and EASE to get user embedding and global model: 
+Before running LOCA, you need (1) user embeddings to find local communities and (2) the global model to cover users who are not considered by local models. 
+1. Run single MultVAE and EASE to get user embedding vectors and the global model: 
 
 `python main.py --model_name MultVAE` and `python main.py --model_name EASE`
 
-2. You can train the LOCA: 
+2. Train LOCA with the specific backbone model:
 
 `python main.py --model_name LOCA_VAE` and `python main.py --model_name LOCA_EASE` 
 
