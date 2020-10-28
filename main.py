@@ -1,6 +1,7 @@
 # Import packages
 import os
 import sys
+import pickle
 from collections import OrderedDict
 
 import numpy as np
@@ -90,3 +91,29 @@ if __name__ == '__main__':
     # evaluation_table.show()
     logger.info(evaluation_table.to_string())
     logger.info("Saved to %s" % (log_dir))
+
+    # Extract global model
+    if 'LOCA' not in model_name:
+        output = model.get_output(dataset)
+
+        output_dir = os.path.join(dataset.data_dir, dataset.data_name, 'output')
+        if not os.path.exists(output_dir):
+            os.mkdir(output_dir)
+        output_file = os.path.join(output_dir, model_name + '_output.p')
+        with open(output_file, 'wb') as f:
+            pickle.dump(output, f, protocol=4)
+        config.save(output_dir)
+        print(f"{model_name} output extracted!")
+
+    # Extract Embedding
+    if model_name == 'MultVAE':
+        user_embedding = model.user_embedding(test_eval_pos)
+
+        emb_dir = os.path.join(dataset.data_dir, dataset.data_name, 'embedding')
+        if not os.path.exists(emb_dir):
+            os.mkdir(emb_dir)
+        emb_file = os.path.join(emb_dir, model_name + '_user.p')
+        with open(emb_file, 'wb') as f:
+            pickle.dump(user_embedding, f, protocol=4)
+        config.save(emb_dir)
+        print(f"{model_name} embedding extracted!")

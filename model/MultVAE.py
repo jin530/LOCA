@@ -235,3 +235,15 @@ class MultVAE(BaseRecommender):
                 user_embedding[batch_user_idx] += batch_emb.detach().cpu()
 
         return user_embedding.detach().cpu().numpy()
+
+    def get_output(self, dataset):
+        test_eval_pos, test_eval_target, _ = dataset.test_data()
+        num_users = len(test_eval_target)
+        num_items = test_eval_pos.shape[1]
+        eval_users = np.arange(num_users)
+        user_iterator = DataBatcher(eval_users, batch_size=1024)
+        output = np.zeros((num_users, num_items))
+        for batch_user_ids in user_iterator:
+            batch_pred = self.predict(batch_user_ids, test_eval_pos)
+            output[batch_user_ids] += batch_pred
+        return output

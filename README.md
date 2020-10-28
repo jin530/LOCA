@@ -4,6 +4,69 @@ This is the code for the WSDM 2021 paper: `Local Collaborative Filtering`.
 ---
 
 ## Dataset
+
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0pky">Dataset</th>
+    <th class="tg-dvpl"># Users</th>
+    <th class="tg-dvpl"># Items</th>
+    <th class="tg-dvpl"># Ratings</th>
+    <th class="tg-dvpl">Sparsity</th>
+    <th class="tg-dvpl">Concentration</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0pky">ML10M</td>
+    <td class="tg-dvpl">69,878</td>
+    <td class="tg-dvpl">10,677</td>
+    <td class="tg-dvpl">10,000,054</td>
+    <td class="tg-dvpl">98.66%</td>
+    <td class="tg-dvpl">48.04%</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">ML20M</td>
+    <td class="tg-dvpl">138,493</td>
+    <td class="tg-dvpl">26,744</td>
+    <td class="tg-dvpl">20,000,263</td>
+    <td class="tg-dvpl">99.46%</td>
+    <td class="tg-dvpl">66.43%</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">AMusic</td>
+    <td class="tg-dvpl">4,964</td>
+    <td class="tg-dvpl">11,797</td>
+    <td class="tg-dvpl">97,439</td>
+    <td class="tg-dvpl">99.83%</td>
+    <td class="tg-dvpl">14.93%</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">AGames</td>
+    <td class="tg-dvpl">13,063</td>
+    <td class="tg-dvpl">17,408</td>
+    <td class="tg-dvpl">236,415</td>
+    <td class="tg-dvpl">99.90%</td>
+    <td class="tg-dvpl">16.40%</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">Yelp</td>
+    <td class="tg-dvpl">25,677</td>
+    <td class="tg-dvpl">25,815</td>
+    <td class="tg-dvpl">731,671</td>
+    <td class="tg-dvpl">99.89%</td>
+    <td class="tg-dvpl">22.78%</td>
+  </tr>
+</tbody>
+</table>
+<br>
+<br>
+We use five public benchmark datasets: MovieLens 10M (ML10M), MovieLens 20M (ML20M), Amazon Digital Music (AMusic), Amazon Video Games (AGames), and Yelp 2015 (Yelp) datasets. For the MovieLens datasets, we did not modify the original data except for binarization. For the Amazon datasets, We removed users with ratings less than
+10, resulting in 97,439 (Music) and 236,415 (Games) ratings. For the Yelp dataset, we pre-processed Yelp 2015 challenge dataset as in <A href='https://github.com/hexiangnan/sigir16-eals'> Fast Matrix Factorization for Online Recommendation with Implicit Feedback </A>, where users and items with less than 10 interactions are
+removed.
+<br>
+<br>
+
 You can get preprocessed datasets in here.
 <!-- Preprocessed Datasets -->
 https://drive.google.com/drive/folders/1DqchJ1RR2TZRNoVeU3MXcXLcMJG0fia_?usp=sharing
@@ -16,30 +79,23 @@ Movielens: https://grouplens.org/datasets/movielens/
 Amazon Review Data: https://nijianmo.github.io/amazon/
 
 <!-- Yelp -->
-Yelp 2016: https://github.com/hexiangnan/sigir16-eals/tree/master/data
+Yelp 2015: https://github.com/hexiangnan/sigir16-eals/tree/master/data
 
 ---
 
 ## Usage
-You can train and test the models by running `main.py`.
-You can change the datasets and other settings in `main_config.cfg` or in command line.
-You can change the model settings in `./model_config/AAA.cfg` or in command line. (AAA is a model name.)
+You can run `main.py` to train and test the models. 
+You can change the experimental settings in `main_config.cfg`, and the model settings in `./model_config/XXX.cfg`.
+Or you can change the settings on the command line.
 
 For example: `python main.py --model_name MultVAE --lr 0.001`
 
-Before run the LOCA, you need 1) user embeddings to find local communites and 2) global model to cover the users who are uncovered by local models. 
-There are two steps to get the user embeddings.
-1. Run single MultVAE and EASE: 
+Before running the LOCA, you need (1) user embeddings to find local communities and (2) a global model to cover users who are not considered by local models. 
+1. Run single MultVAE and EASE to get user embedding and global model: 
 
 `python main.py --model_name MultVAE` and `python main.py --model_name EASE`
 
-After training the model, trained model will be saved to `./saves/MultVAE/X_YYYYYYYY-ZZZZ` and `./saves/EASE/X_YYYYYYYY-ZZZZ`(X, Y, Z are run_number, date and time, respectively.)
-
-2. Extract embeddings and global model: 
-
-`python main_extract.py --path ./saves/MultVAE/X_YYYYYYYY-ZZZZ` and `python main_extract.py --path ./saves/EASE/X_YYYYYYYY-ZZZZ`
-
-3. Train the LOCA: 
+2. You can train the LOCA: 
 
 `python main.py --model_name LOCA_VAE` and `python main.py --model_name LOCA_EASE` 
 
