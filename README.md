@@ -108,9 +108,24 @@ Before running LOCA, you need (1) user embeddings to find local communities and 
 - Python 3
 - Torch 1.5
 
-<!-- ## Citation
+## Citation
 Please cite our papaer:
 ```
-@inproceedings{
-} 
-``` -->
+@inproceedings{DBLP:conf/wsdm/ChoiJLL21,
+  author    = {Minjin Choi and
+               Yoonki Jeong and
+               Joonseok Lee and
+               Jongwuk Lee},
+  title     = {Local Collaborative Autoencoders},
+  booktitle = {{WSDM} '21, The Fourteenth {ACM} International Conference on Web Search
+               and Data Mining, Virtual Event, Israel, March 8-12, 2021},
+  pages     = {734--742},
+  publisher = {{ACM}},
+  year      = {2021},
+  url       = {https://doi.org/10.1145/3437963.3441808},
+  doi       = {10.1145/3437963.3441808},
+  timestamp = {Wed, 07 Apr 2021 16:17:44 +0200},
+  biburl    = {https://dblp.org/rec/conf/wsdm/ChoiJLL21.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+```
