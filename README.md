@@ -1,5 +1,5 @@
 # LOCA
-This is the official code for the WSDM 2021 paper: `Local Collaborative Autoencoders`. 
+This is the official code for the WSDM 2021 paper: [`Local Collaborative Autoencoders`.](https://arxiv.org/abs/2103.16103)
 
 The slides can be found [here](https://www.slideshare.net/ssuser1f2162/local-collaborative-autoencoders-wsdm2021).
 
