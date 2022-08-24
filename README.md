@@ -1,5 +1,5 @@
 # LOCA
-This is the official code for the WSDM 2021 paper: [`Local Collaborative Autoencoders`.](https://arxiv.org/abs/2103.16103)
+This is the official code with preprocessed datasets for the WSDM 2021 paper: [`Local Collaborative Autoencoders`.](https://arxiv.org/abs/2103.16103)
 
 The slides can be found [here](https://www.slideshare.net/ssuser1f2162/local-collaborative-autoencoders-wsdm2021).
 
@@ -67,10 +67,6 @@ We use five public benchmark datasets: MovieLens 10M (ML10M), MovieLens 20M (ML2
 removed.
 <br>
 <br>
-
-You can get preprocessed datasets from the link below.
-<!-- Preprocessed Datasets -->
-https://drive.google.com/drive/folders/1DqchJ1RR2TZRNoVeU3MXcXLcMJG0fia_?usp=sharing
 
 You can get the original datasets from the following links:
 <!-- Movielens -->
